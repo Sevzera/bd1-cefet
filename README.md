@@ -7,3 +7,7 @@ Colaboradores:
 - Arthur Severo de Souza
 - Müller Penaforte Fernandes
 - Victor Le Roy Matos
+
+Conexão com o BD:
+
+ - Alterar a string de conexão de acordo com a necessidade
