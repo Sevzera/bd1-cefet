@@ -8,6 +8,6 @@ Colaboradores:
 - Müller Penaforte Fernandes
 - Victor Le Roy Matos
 
-Conexão com o BD:
+Conexão com o MySQL:
 
  - Alterar a string de conexão de acordo com a necessidade
