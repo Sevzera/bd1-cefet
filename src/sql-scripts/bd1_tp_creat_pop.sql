@@ -37,7 +37,8 @@ create table cliente (
     primary key (cpf),
     nome varchar(40) not null,
     idade numeric not null,
-    check (idade >= 18)
+    check (idade >= 18),
+    endereco varchar(40) default null
 );
 
 create table aluguel (
