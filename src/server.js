@@ -1,36 +1,29 @@
+import express from 'express';
+import * as db from './database.js';
+
 (async () => {
-    const express = require('express');
     const server = express();
+    server.use(express.json());
     const port = 5000;
+    await db.connect();
+
+    server.get('/alugueis', (req, res) => {
+        db.getAluguel(req, res);
+    });
+    server.get('/alugueis/:id', (req, res) => {
+        db.getAluguel(req, res);
+    });
+
+    server.post('/alugueis/novo', (req, res) => {
+        db.addAluguel(req, res);
+    });
+
+    server.put('/alugueis/:id/encerrar', (req, res) => {
+        db.endAluguel(req, res);
+    })
+
     await server.listen(port, () => {
         console.log(`Listening on port ${port}`);
     })
-    const db = require("./database");
-    await db.connect();
-
-    let alg1 = {
-        valorbase: 2500,
-        cpfvendedor: 12345678900,
-        cpfcliente: 12345678905,
-        placacarro: 1234567
-    }
-    await db.addAluguel(aluguel = alg1);
-    let alg2 = {
-        valorbase: 5000,
-        cpfvendedor: 12345678901,
-        cpfcliente: 12345678906,
-        placacarro: 2345678
-    }
-    await db.addAluguel(aluguel = alg2);
-
-    console.log(await db.getAluguel(id = 1));
-
-    console.log(await db.getAluguel());
-
-    db.endAluguel(cpfcliente = 12345678906);
-
-    console.log(await db.getAluguel(id = 1));
-
-    console.log(await db.getAluguel());
 
 })();

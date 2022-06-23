@@ -1,9 +1,7 @@
-module.exports = { connect, getAluguel, addAluguel, endAluguel }
-
-const mysql = require('mysql2/promise');
+import * as mysql from 'mysql2/promise';
 let connection;
 
-async function connect() {
+export async function connect() {
     if (!connection) {
         connection = await mysql.createConnection("mysql://root:123321@localhost:3306/bd1_tp");
         console.log('Connected to MySQL Database');
@@ -11,19 +9,25 @@ async function connect() {
     return connection;
 }
 
-async function getAluguel(id) {
+export async function getAluguel(req, res) {
     let qryText = `select * from aluguel;`;
-    if (id)
-        qryText = qryText.replace(`;`, ` where idaluguel = ${id};`);
-    return await connection.query(qryText).then(result => result.at(0)).catch(err => console.error(err.sqlMessage));
+    if (req.params.id)
+        qryText = qryText.replace(`;`, ` where idaluguel = ${req.params.id};`);
+    await connection.query(qryText)
+        .then(result => res.send(result.at(0)))
+        .catch(err => console.error(err.sqlMessage));
 }
 
-async function addAluguel(aluguel) {
-    let qryText = `insert into aluguel(idaluguel, valorbase, cpfvendedor, cpfcliente, placacarro) values(${aluguel.idaluguel}, ${aluguel.valorbase}, ${aluguel.cpfvendedor}, ${aluguel.cpfcliente}, ${aluguel.placacarro});`;
-    await connection.query(qryText).catch(err => console.error(err.sqlMessage));
+export async function addAluguel(req, res) {
+    let qryText = `insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(${req.body.valorbase}, ${req.body.cpfvendedor}, ${req.body.cpfcliente}, ${req.body.placacarro});`;
+    await connection.query(qryText)
+        .then(result => res.send(result))
+        .catch(err => console.error(err));
 }
 
-async function endAluguel(cpfcliente) {
-    let qryText = `update aluguel set ativo = 'N' where cpfcliente = ${cpfcliente};`;
-    await connection.query(qryText).catch(err => console.error(err.sqlMessage));
+export async function endAluguel(req, res) {
+    let qryText = `update aluguel set ativo = 'N' where cpfcliente = ${req.body.cpfcliente} AND idaluguel = ${req.params.id};`;
+    await connection.query(qryText)
+        .then(result => res.send(result))
+        .catch(err => console.error(err));
 }
