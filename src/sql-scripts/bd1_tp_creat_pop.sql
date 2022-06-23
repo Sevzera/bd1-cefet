@@ -17,8 +17,8 @@ create table vendedor (
     nome varchar(40) not null,
     numvendas int default 0 not null,
     salariobase varchar(40) not null,
-    incrementosalario numeric(3 , 2 ) default 1 not null,
-    check (incrementosalario <= 1.5)
+    bonusmensal numeric(10, 2) default 0 not null,
+    check (bonusmensal <= 500)
 );
 
 create table carro (
@@ -77,6 +77,7 @@ for each row
 begin 
     if (new.cpfcliente, new.placacarro) not in (select cpfcliente, placacarro from aluguel where ativo = 'S') then
 			set new.datainicio = date(now());
+            update vendedor set numvendas = numvendas + 10 where cpf = new.cpfvendedor;
 	else
 		signal sqlstate '45000' set message_text = 'INVALIDO: CPF ou Carro indisponiveis para novo aluguel';
     end if;
@@ -109,7 +110,7 @@ before update on vendedor
 for each row
 begin
 	if old.numvendas <> new.numvendas then
-		set new.incrementosalario = 1 + (floor(new.numvendas/25) * 0.01);
+		set new.bonusmensal = old.bonusmensal + (floor(new.numvendas/10) * 100);
 	end if;
 end;
 $$
@@ -145,8 +146,8 @@ insert into cliente(cpf, nome, idade) values('12345678909', 'Nome 9', 22);
 
 -- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(100, 12345678900, 12345678905, '1234567');
 -- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(200, 12345678900, 12345678906, '2345678');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(400, 12345678901, 12345678907, '3456789');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(800, 12345678902, 12345678908, '4567890');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(1600, 12345678904, 12345678909, '5678901');
+-- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(400, 12345678900, 12345678907, '3456789');
+-- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(800, 12345678901, 12345678908, '4567890');
+-- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(1600, 12345678902, 12345678909, '5678901');
 
 commit;
