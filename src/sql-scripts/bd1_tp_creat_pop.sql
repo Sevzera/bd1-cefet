@@ -3,26 +3,26 @@ use bd1_tp;
 -- CREATE --
 
 create table estabelecimento (
-    idestabelecimento numeric,
+    idestabelecimento int auto_increment,
     primary key (idestabelecimento),
     endereco varchar(40) not null
 );
 
 create table vendedor (
-    idestabelecimento numeric,
+    idestabelecimento int,
     foreign key (idestabelecimento)
         references estabelecimento (idestabelecimento),
     cpf numeric(11),
     primary key (cpf),
     nome varchar(40) not null,
-    numvendas numeric default 0 not null,
+    numvendas int default 0 not null,
     salariobase varchar(40) not null,
     incrementosalario numeric(3 , 2 ) default 1 not null,
     check (incrementosalario <= 1.5)
 );
 
 create table carro (
-    idestabelecimento numeric,
+    idestabelecimento int,
     foreign key (idestabelecimento)
         references estabelecimento (idestabelecimento),
     placa varchar(7),
@@ -119,11 +119,11 @@ commit;
 
 -- INSERT --
 
-insert into estabelecimento values(1, 'End. 1');
--- insert into estabelecimento values(2, 'End. 2');
--- insert into estabelecimento values(3, 'End. 3');
--- insert into estabelecimento values(4, 'End. 4');
--- insert into estabelecimento values(5, 'End. 5');
+insert into estabelecimento(endereco) values('End. 1');
+-- insert into estabelecimento(endereco) values('End. 2');
+-- insert into estabelecimento(endereco) values('End. 3');
+-- insert into estabelecimento(endereco) values('End. 4');
+-- insert into estabelecimento(endereco) values('End. 5');
 
 insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(1, 12345678900, 'Nome 0', 10);
 insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(1, 12345678901, 'Nome 1', 20);
