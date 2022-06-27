@@ -138,11 +138,11 @@ insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(1, '34
 -- insert into carro(idestabelecimento, placa, custodia, modelo) values(2, '4567890', 160, 'Mod. 3');
 -- insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(3, '5678901', 320, 'Mod. 4', 'Cor 2');
 
-insert into cliente(cpf, nome, idade) values('12345678905', 'Nome 5', 18);
+insert into cliente(cpf, nome, idade, endereco) values('12345678905', 'Nome 5', 18, 'End. 6');
 insert into cliente(cpf, nome, idade) values('12345678906', 'Nome 6', 19);
-insert into cliente(cpf, nome, idade) values('12345678907', 'Nome 7', 20);
+insert into cliente(cpf, nome, idade, endereco) values('12345678907', 'Nome 7', 20, 'End. 7');
 insert into cliente(cpf, nome, idade) values('12345678908', 'Nome 8', 21);
-insert into cliente(cpf, nome, idade) values('12345678909', 'Nome 9', 22);
+insert into cliente(cpf, nome, idade, endereco) values('12345678909', 'Nome 9', 22, 'End. 8');
 
 -- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(100, 12345678900, 12345678905, '1234567');
 -- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(200, 12345678900, 12345678906, '2345678');
