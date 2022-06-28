@@ -1,8 +1,11 @@
+import { default as connection } from "../database.js";
+const db = await connection;
+
 // QUERYS VENDEDOR
 export async function addVendedor(req, res) {
     let qryText = `insert into vendedor(idestabelecimento, cpf, nome, salariobase) values (${req.body.idestabelecimento}, ${req.body.cpf}, '${req.body.nome}', ${req.body.salariobase});`;
     console.log(qryText);
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }
@@ -17,21 +20,21 @@ export async function updVendedor(req, res) {
         qryText = qryText + ` salariobase = '${req.body.salariobase}',`;
     qryText = qryText.slice(0, -1) + ` where cpf = ${req.body.cpf};`;
     console.log(qryText);
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }
 
 export async function rmvVendedor(req, res) {
     let qryText = `delete from vendedor where cpf = ${req.body.cpf};`;
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result))
         .catch(err => console.error(err.sqlMessage));
 }
 
 export async function getVendedor(req, res) {
     let qryText = `select * from vendedor where cpf = ${req.body.cpf};`
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }

@@ -1,5 +1,4 @@
 import express from 'express';
-import * as db from './database.js';
 
 import { default as rtrAluguel } from "./routes/rtrAluguel.js";
 import { default as rtrCarro } from "./routes/rtrCarro.js";
@@ -12,7 +11,6 @@ export const app = async () => {
     const server = express();
     server.use(express.json());
     const port = 5000;
-    await db.connect();
 
     server.use('/aluguel', rtrAluguel);
     server.use('/carro', rtrCarro);

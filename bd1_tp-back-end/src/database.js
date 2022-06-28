@@ -1,5 +1,5 @@
 import * as mysql from 'mysql2/promise';
-export let connection;
+let connection;
 
 export async function connect() {
     if (!connection) {
@@ -14,3 +14,5 @@ export async function connect() {
     }
     return connection;
 }
+
+export default connect();

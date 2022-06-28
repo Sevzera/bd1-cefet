@@ -1,7 +1,10 @@
+import { default as connection } from "../database.js";
+const db = await connection;
+
 // QUERYS ALUGUEL
 export async function getAluguel(req, res) {
     let qryText = `select * from aluguel where idaluguel = ${req.params.id};`;
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }

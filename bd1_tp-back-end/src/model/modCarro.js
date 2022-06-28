@@ -1,3 +1,6 @@
+import { default as connection } from "../database.js";
+const db = await connection;
+
 // QUERYS CARRO
 export async function addCarro(req, res) {
     let qryText = `insert into carro(idestabelecimento, placa, custodia, modelo`;
@@ -8,7 +11,7 @@ export async function addCarro(req, res) {
         qryText = qryText + `, '${req.body.cor}'`
     qryText = qryText + `);`
     console.log(qryText);
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }
@@ -23,21 +26,21 @@ export async function updCarro(req, res) {
         qryText = qryText + ` cor = '${req.body.cor}',`;
     qryText = qryText.slice(0, -1) + ` where placa = ${req.body.placa};`;
     console.log(qryText);
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }
 
 export async function rmvCarro(req, res) {
     let qryText = `delete from carro where placa = ${req.body.placa};`;
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result))
         .catch(err => console.error(err.sqlMessage));
 }
 
 export async function getCarro(req, res) {
     let qryText = `select * from carro where placa = ${req.body.placa};`
-    await connection.query(qryText)
+    await db.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));
 }
