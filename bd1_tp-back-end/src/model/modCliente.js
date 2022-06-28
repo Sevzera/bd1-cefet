@@ -36,7 +36,7 @@ export async function rmvCliente(req, res) {
 
 export async function getCliente(req, res) {
     let qryText = `select * from cliente`;
-    if (req.params.id)
+    if (req.body.cpf)
         qryText = qryText + ` where cpf = ${req.body.cpf}`;
     qryText = qryText + ';';
     await db.query(qryText)
