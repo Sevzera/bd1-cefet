@@ -49,7 +49,7 @@ export async function rmvCliente(req, res) {
 }
 
 export async function getCliente(req, res) {
-    let qryText = `select * from cliente where cpf = ${rew.body.cpf};`
+    let qryText = `select * from cliente where cpf = ${req.body.cpf};`
     await connection.query(qryText)
         .then(result => res.send(result.at(0)))
         .catch(err => console.error(err.sqlMessage));

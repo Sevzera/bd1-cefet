@@ -1,4 +1,5 @@
-*/.vscode/*
+**/.vscode/*
+**/front-end/*
 
 # Logs
 logs
