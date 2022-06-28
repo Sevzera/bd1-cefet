@@ -1,5 +1,5 @@
 import * as mysql from 'mysql2/promise';
-let connection;
+export let connection;
 
 export async function connect() {
     if (!connection) {
