@@ -4,16 +4,16 @@ import * as model from '../model/modCarro.js';
 
 // ROTAS CARRO
 router.post('/cadastro', (req, res) => {
-    db.addCarro(req, res);
+    model.addCarro(req, res);
 });
 router.put('/atualizar', (req, res) => {
-    db.updCarro(req, res);
+    model.updCarro(req, res);
 });
 router.delete('/remover', (req, res) => {
-    db.rmvCarro(req, res);
+    model.rmvCarro(req, res);
 });
 router.get('/consultar', (req, res) => {
-    db.getCarro(req, res);
+    model.getCarro(req, res);
 });
 
 export default router;

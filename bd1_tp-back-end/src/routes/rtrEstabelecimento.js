@@ -4,16 +4,16 @@ import * as model from '../model/modEstabelecimento.js';
 
 // ROTAS ESTABELECIMENTO
 router.post('/cadastro', (req, res) => {
-    db.addEstabelecimento(req, res);
+    model.addEstabelecimento(req, res);
 });
 router.put('/atualizar', (req, res) => {
-    db.updEstabelecimento(req, res);
+    model.updEstabelecimento(req, res);
 });
 router.delete('/remover', (req, res) => {
-    db.rmvEstabelecimento(req, res);
+    model.rmvEstabelecimento(req, res);
 });
 router.get('/consultar', (req, res) => {
-    db.getEstabelecimento(req, res);
+    model.getEstabelecimento(req, res);
 });
 
 export default router;

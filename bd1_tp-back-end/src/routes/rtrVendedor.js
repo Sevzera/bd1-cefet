@@ -4,16 +4,16 @@ import * as model from '../model/modVendedor.js';
 
 // ROTAS VENDEDOR
 router.post('/vendedor/cadastro', (req, res) => {
-    db.addVendedor(req, res);
+    model.addVendedor(req, res);
 });
 router.put('/vendedor/atualizar', (req, res) => {
-    db.updVendedor(req, res);
+    model.updVendedor(req, res);
 });
 router.delete('/vendedor/remover', (req, res) => {
-    db.rmvVendedor(req, res);
+    model.rmvVendedor(req, res);
 });
 router.get('/vendedor/consultar', (req, res) => {
-    db.getVendedor(req, res);
+    model.getVendedor(req, res);
 });
 
 export default router;
