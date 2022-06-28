@@ -1,5 +1,5 @@
 import express from 'express';
-import * as db from './database.js';
+import * as db from './back-end/database.js';
 
 (async () => {
     const server = express();
