@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as db from '../database.js';
+import * as model from '../model/modGeneral.js';
 
 // DEMAIS ROTAS
 router.post('/alugueis/novo', (req, res) => {

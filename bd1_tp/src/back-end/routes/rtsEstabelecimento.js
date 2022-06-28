@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as db from '../database.js';
+import * as model from '../model/modEstabelecimento.js';
 
 // ROTAS ESTABELECIMENTO
 router.post('/cadastro', (req, res) => {

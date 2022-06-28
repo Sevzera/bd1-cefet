@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as db from '../database.js';
+import * as model from '../model/modAluguel.js';
 
 // ROTAS ALUGUEL
 router.get('/', (req, res) => {
