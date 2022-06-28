@@ -10,4 +10,8 @@ Colaboradores:
 
 Conexão com o MySQL:
 
- - Alterar a string de conexão de acordo com a necessidade
+- Alterar o objeto de conexão de acordo com a necessidade
+
+Dependências:
+
+- npm i mysql2
