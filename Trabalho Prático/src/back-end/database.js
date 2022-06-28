@@ -3,7 +3,13 @@ let connection;
 
 export async function connect() {
     if (!connection) {
-        connection = await mysql.createConnection("mysql://root:123321@localhost:3306/bd1_tp");
+        connection = await mysql.createConnection({
+            host: 'localhost',
+            port: '3306',
+            user: 'root',
+            password: '123321',
+            database: 'bd1_tp'
+        });
         console.log('Connected to MySQL Database');
     }
     return connection;
