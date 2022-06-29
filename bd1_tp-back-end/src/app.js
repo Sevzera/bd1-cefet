@@ -10,11 +10,11 @@ import { default as rtrGeneral } from './routes/rtrGeneral.js'
 export const app = async () => {
     const server = express();
     server.use(express.json());
-    server.use(function (req, res, next) { 
-        res.header("Access-Control-Allow-Origin", "*"); 
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token"); 
-        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); 
-        next(); 
+    server.use(function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token");
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        next();
     });
     const port = 5000;
 
@@ -23,7 +23,7 @@ export const app = async () => {
     server.use('/cliente', rtrCliente);
     server.use('/estabelecimento', rtrEstabelecimento);
     server.use('/vendedor', rtrVendedor);
-    server.use('', rtrGeneral);
+    server.use('/api', rtrGeneral);
 
     await server.listen(port, () => {
         console.log(`Listening on port ${port}`);
