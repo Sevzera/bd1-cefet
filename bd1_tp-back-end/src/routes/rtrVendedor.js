@@ -1,19 +1,19 @@
 import express from 'express';
 const router = express.Router();
-import * as model from '../model/modVendedor.js';
+import * as control from '../controller/ctrlVendedor.js';
 
 // ROTAS VENDEDOR
 router.post('/vendedor/cadastro', (req, res) => {
-    model.addVendedor(req, res);
+    control.addVendedor(req, res);
 });
 router.put('/vendedor/atualizar', (req, res) => {
-    model.updVendedor(req, res);
+    control.updVendedor(req, res);
 });
-router.delete('/vendedor/remover', (req, res) => {
-    model.rmvVendedor(req, res);
+router.put('/vendedor/remover', (req, res) => {
+    control.rmvVendedor(req, res);
 });
-router.get('/vendedor/consultar', (req, res) => {
-    model.getVendedor(req, res);
+router.put('/vendedor/consultar', (req, res) => {
+    control.getVendedor(req, res);
 });
 
 export default router;

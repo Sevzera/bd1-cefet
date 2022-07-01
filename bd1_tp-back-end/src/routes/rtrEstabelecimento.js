@@ -1,19 +1,19 @@
 import express from 'express';
 const router = express.Router();
-import * as model from '../model/modEstabelecimento.js';
+import * as control from '../controller/ctrlEstabelecimento.js';
 
 // ROTAS ESTABELECIMENTO
 router.post('/cadastro', (req, res) => {
-    model.addEstabelecimento(req, res);
+    control.addEstabelecimento(req, res);
 });
 router.put('/atualizar', (req, res) => {
-    model.updEstabelecimento(req, res);
+    control.updEstabelecimento(req, res);
 });
-router.delete('/remover', (req, res) => {
-    model.rmvEstabelecimento(req, res);
+router.put('/remover', (req, res) => {
+    control.rmvEstabelecimento(req, res);
 });
-router.get('/consultar', (req, res) => {
-    model.getEstabelecimento(req, res);
+router.put('/consultar', (req, res) => {
+    control.getEstabelecimento(req, res);
 });
 
 export default router;

@@ -1,16 +1,16 @@
 import express from 'express';
 const router = express.Router();
-import * as model from '../model/modGeneral.js';
+import * as control from '../controller/ctrlGeneral.js';
 
 // DEMAIS ROTAS
 router.post('/alugueis/novo', (req, res) => {
-    model.iniciarAluguel(req, res);
+    control.iniciarAluguel(req, res);
 });
 router.put('/alugueis/:id/encerrar', (req, res) => {
-    model.encerrarAluguel(req, res);
+    control.encerrarAluguel(req, res);
 });
-router.get('/vendedor/gerar-pagamentos', (req, res) => {
-    model.gerarPagamentos(req, res);
+router.put('/vendedor/gerar-pagamentos', (req, res) => {
+    control.gerarPagamentos(req, res);
 });
 
 export default router;

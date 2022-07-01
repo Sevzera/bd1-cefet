@@ -1,19 +1,19 @@
 import express from 'express';
 const router = express.Router();
-import * as model from '../model/modCarro.js';
+import * as control from '../controller/ctrlCarro.js';
 
 // ROTAS CARRO
 router.post('/cadastro', (req, res) => {
-    model.addCarro(req, res);
+    control.addCarro(req, res);
 });
 router.put('/atualizar', (req, res) => {
-    model.updCarro(req, res);
+    control.updCarro(req, res);
 });
-router.delete('/remover', (req, res) => {
-    model.rmvCarro(req, res);
+router.put('/remover', (req, res) => {
+    control.rmvCarro(req, res);
 });
-router.get('/consultar', (req, res) => {
-    model.getCarro(req, res);
+router.put('/consultar', (req, res) => {
+    control.getCarro(req, res);
 });
 
 export default router;
