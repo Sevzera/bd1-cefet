@@ -19,6 +19,9 @@ router.put('/cliente/consultar/aluguel', (req, res) => {
     control.alugueisAssociadosCliente(req, res);
 });
 router.put('/cliente/consultar/aluguel/contagem', (req, res) => {
+    control.alugueisCountCliente(req, res);
+});
+router.put('/cliente/consultar/aluguel/historico', (req, res) => {
     control.alugueisHistoricoCountCliente(req, res);
 });
 router.put('/carro/consultar/aluguel/historico', (req, res) => {
