@@ -3,16 +3,16 @@ const router = express.Router();
 import * as control from '../controller/ctrlVendedor.js';
 
 // ROTAS VENDEDOR
-router.post('/vendedor/cadastro', (req, res) => {
+router.post('/cadastro', (req, res) => {
     control.addVendedor(req, res);
 });
-router.put('/vendedor/atualizar', (req, res) => {
+router.put('/atualizar', (req, res) => {
     control.updVendedor(req, res);
 });
-router.put('/vendedor/remover', (req, res) => {
+router.put('/remover', (req, res) => {
     control.rmvVendedor(req, res);
 });
-router.put('/vendedor/consultar', (req, res) => {
+router.put('/consultar', (req, res) => {
     control.getVendedor(req, res);
 });
 

@@ -17,8 +17,7 @@ create table vendedor (
     nome varchar(40) not null,
     numvendas int default 0 not null,
     salariobase varchar(40) not null,
-    bonusmensal numeric(10, 2) default 0 not null,
-    check (bonusmensal <= 500)
+    bonusmensal numeric(10, 2) default 0 not null
 );
 
 create table carro (
@@ -75,9 +74,9 @@ create trigger iniciaAluguel
 before insert on aluguel
 for each row 
 begin 
-    if (new.cpfcliente, new.placacarro) not in (select cpfcliente, placacarro from aluguel where ativo = 'S') then
+    if new.cpfcliente not in (select cpfcliente from aluguel where ativo = 'S') AND new.placacarro not in (select placacarro from aluguel where ativo = 'S') then
 			set new.datainicio = date(now());
-            update vendedor set numvendas = numvendas + 10 where cpf = new.cpfvendedor;
+            update vendedor set numvendas = numvendas + 1 where cpf = new.cpfvendedor;
 	else
 		signal sqlstate '45000' set message_text = 'INVALIDO: CPF ou Carro indisponiveis para novo aluguel';
     end if;
@@ -109,8 +108,8 @@ create trigger calcIncremento
 before update on vendedor
 for each row
 begin
-	if old.numvendas <> new.numvendas then
-		set new.bonusmensal = old.bonusmensal + (floor(new.numvendas/10) * 100);
+	if old.numvendas <> new.numvendas AND old.bonusmensal <= 500 then 
+		set new.bonusmensal = old.bonusmensal + (floor(new.numvendas) * 10);
 	end if;
 end;
 $$
@@ -144,10 +143,8 @@ insert into cliente(cpf, nome, idade, endereco) values('12345678907', 'Nome 7', 
 insert into cliente(cpf, nome, idade) values('12345678908', 'Nome 8', 21);
 insert into cliente(cpf, nome, idade, endereco) values('12345678909', 'Nome 9', 22, 'End. 8');
 
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(100, 12345678900, 12345678905, '1234567');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(200, 12345678900, 12345678906, '2345678');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(400, 12345678900, 12345678907, '3456789');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(800, 12345678901, 12345678908, '4567890');
--- insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(1600, 12345678902, 12345678909, '5678901');
+insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(100, 12345678900, 12345678905, '1234567');
+insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(200, 12345678900, 12345678906, '2345678');
+insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(400, 12345678901, 12345678907, '3456789'); 
 
 commit;
