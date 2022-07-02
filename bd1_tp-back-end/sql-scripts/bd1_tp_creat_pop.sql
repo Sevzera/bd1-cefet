@@ -109,7 +109,7 @@ before update on vendedor
 for each row
 begin
 	if old.numvendas <> new.numvendas AND old.bonusmensal <= 500 then 
-		set new.bonusmensal = old.bonusmensal + (floor(new.numvendas) * 10);
+		set new.bonusmensal = old.bonusmensal + 20;
 	end if;
 end;
 $$
