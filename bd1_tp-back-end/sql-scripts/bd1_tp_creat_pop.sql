@@ -120,22 +120,22 @@ commit;
 -- INSERT --
 
 insert into estabelecimento(endereco) values('End. 1');
--- insert into estabelecimento(endereco) values('End. 2');
--- insert into estabelecimento(endereco) values('End. 3');
--- insert into estabelecimento(endereco) values('End. 4');
--- insert into estabelecimento(endereco) values('End. 5');
+insert into estabelecimento(endereco) values('End. 2');
+insert into estabelecimento(endereco) values('End. 3');
+insert into estabelecimento(endereco) values('End. 4');
+insert into estabelecimento(endereco) values('End. 5');
 
 insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(1, 12345678900, 'Nome 0', 10);
 insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(1, 12345678901, 'Nome 1', 20);
-insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(1, 12345678902, 'Nome 2', 30);
--- insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(2, 12345678903, 'Nome 3', 40);
--- insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(3, 12345678904, 'Nome 4', 50);
+insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(2, 12345678902, 'Nome 2', 30);
+insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(2, 12345678903, 'Nome 3', 40);
+insert into vendedor(idestabelecimento, cpf, nome, salariobase) values(3, 12345678904, 'Nome 4', 50);
 
 insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(1, '1234567', 20, 'Mod. 0', 'Cor 0');
 insert into carro(idestabelecimento, placa, custodia, modelo) values(1, '2345678', 40, 'Mod. 1');
 insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(1, '3456789', 80, 'Mod. 2', 'Cor 1');
--- insert into carro(idestabelecimento, placa, custodia, modelo) values(2, '4567890', 160, 'Mod. 3');
--- insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(3, '5678901', 320, 'Mod. 4', 'Cor 2');
+insert into carro(idestabelecimento, placa, custodia, modelo) values(2, '4567890', 160, 'Mod. 3');
+insert into carro(idestabelecimento, placa, custodia, modelo, cor) values(3, '5678901', 320, 'Mod. 4', 'Cor 2');
 
 insert into cliente(cpf, nome, idade, endereco) values('12345678905', 'Nome 5', 18, 'End. 6');
 insert into cliente(cpf, nome, idade) values('12345678906', 'Nome 6', 19);
@@ -146,5 +146,7 @@ insert into cliente(cpf, nome, idade, endereco) values('12345678909', 'Nome 9', 
 insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(100, 12345678900, 12345678905, '1234567');
 insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(200, 12345678900, 12345678906, '2345678');
 insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(400, 12345678901, 12345678907, '3456789'); 
+insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(800, 12345678902, 12345678908, '4567890'); 
+insert into aluguel(valorbase, cpfvendedor, cpfcliente, placacarro) values(1600, 12345678903, 12345678909, '5678901'); 
 
 commit;
